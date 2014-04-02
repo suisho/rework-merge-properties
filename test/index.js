@@ -11,7 +11,11 @@ var assertFixture = function(dir){
 }
 
 describe("", function(){
-  ["basic", "important"].forEach(function(dir){
+  [
+    "basic",
+    "important",
+    "prop_order"
+  ].forEach(function(dir){
     it(dir, function(){
       assertFixture(dir)
     })

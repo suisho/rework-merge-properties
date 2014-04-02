@@ -3,6 +3,7 @@ var defaults = require("defaults")
 var uniq = require("uniq")
 // put regexp local value for performance.
 var importantRegexp = new RegExp()
+var without = require("lodash.without")
 importantRegexp.compile(/.*\!important.*/)
 
 module.exports = function(style){
@@ -12,23 +13,27 @@ module.exports = function(style){
   })
 }
 
+var orderPush = function(order, prop){
+  order = without(order, prop)
+  order.push(prop)
+  return order
+}
 
 var computeDeclaration = function(decls){
   var flat = {}
   var important = {}
-  var order = uniq(decls.map(function(decl){
-    return decl.property
-  }).reverse()).reverse()
-  console.log(order)
+  var order = []
   decls.forEach(function(decl){
     // add to hash
     var container = isImportant(decl.value) ? important : flat
     container[decl.property] = decl
 
+    // set order
+    order = orderPush(order, decl.property)
   })
 
-  var computed = []
   // ordering
+  var computed = []
   order.forEach(function(prop){
     var decl = flat[prop]
     if(important[prop]){
