@@ -5,12 +5,15 @@ var assert = require("assert")
 
 var assertFixture = function(dir){
   var input = fs.readFileSync("./fixture/"+dir+"/input.css", "utf-8")
-  var output = fs.readFileSync("./fixture/"+dir+"/output.css", "utf-8")
-  assert.equal(output, rework(input).use(compute).toString())
+  var output = fs.readFileSync("./fixture/"+dir+"/output.css", "utf-8").trim()
+  var result = rework(input).use(compute).toString().trim()
+  assert.equal(output, result)
 }
 
 describe("", function(){
-  it("basic usage", function(){
-    assertFixture("basic")
+  ["basic", "important"].forEach(function(dir){
+    it(dir, function(){
+      assertFixture(dir)
+    })
   })
 })

@@ -1,0 +1,9 @@
+.has_important{
+  color: red !important;
+  color: blue;
+}
+
+.has_important2{
+  color: blue;
+  color: red !important;
+}
