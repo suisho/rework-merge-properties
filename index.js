@@ -6,18 +6,22 @@ var importantRegexp = new RegExp()
 var without = require("lodash.without")
 importantRegexp.compile(/.*\!important.*/)
 
-module.exports = function(style){
+// delect ordinaly utility
+// first in last out and remove if duplicate
+var orderPush = function(order, prop){
+  order = without(order, prop)
+  order.push(prop)
+  return order
+}
+
+module.exports.property = function(style){
+  
   // compute declarations
   walk(style, function(rules, node){
     rules.declarations = computeDeclaration(rules.declarations)
   })
 }
 
-var orderPush = function(order, prop){
-  order = without(order, prop)
-  order.push(prop)
-  return order
-}
 
 var computeDeclaration = function(decls){
   var flat = {}
