@@ -1,8 +1,8 @@
 var walk = require("rework-walk")
 var defaults = require("defaults")
 // put regexp local value for performance.
-var importantRegexp = new RegExp("imporant\!")
-importantRegexp.compile()
+var importantRegexp = new RegExp()
+importantRegexp.compile(/.*\!important.*/)
 
 module.exports = function(style){
   // compute same property
