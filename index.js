@@ -1,11 +1,12 @@
 var walk = require("rework-walk")
 var defaults = require("defaults")
+var uniq = require("uniq")
 // put regexp local value for performance.
 var importantRegexp = new RegExp("imporant\!")
 importantRegexp.compile()
 
 module.exports = function(style){
-  // compute same property
+  // compute declarations
   walk(style, function(rules, node){
     rules.declarations = computeDeclaration(rules.declarations)
   })
@@ -15,19 +16,15 @@ module.exports = function(style){
 var computeDeclaration = function(decls){
   var flat = {}
   var important = {}
-  var order = []
-
+  var order = uniq(decls.map(function(decl){
+    return decl.property
+  }).reverse()).reverse()
+  console.log(order)
   decls.forEach(function(decl){
     // add to hash
     var container = isImportant(decl.value) ? important : flat
     container[decl.property] = decl
 
-    // detect order
-    var orderIdx = order.indexOf(decl.property)
-    if(orderIdx > -1){
-      order.splice(orderIdx, 1)
-    }
-    order.push(decl.property)
   })
 
   var computed = []
