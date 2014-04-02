@@ -1,0 +1,13 @@
+.foo {
+  color: blue;
+}
+
+.baz,
+.bar {
+  color: green;
+}
+
+.bao {
+  padding: 0px;
+  color: purple;
+}
