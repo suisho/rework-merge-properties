@@ -15,3 +15,9 @@
 .has_important{
   color: red !important;
 }
+
+
+.same_class{
+  color:red;
+  margin:100px;
+}
