@@ -1,0 +1,25 @@
+{
+  "name": "rework-property-override",
+  "version": "0.0.0",
+  "description": "reworkcss plugin for override ( other word recast or sanitize ) delcarations property",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "reworkcss",
+    "overwrite",
+    "property",
+    "declarations",
+    "inherit",
+    "recompute"
+  ],
+  "author": "suisho",
+  "license": "ISC",
+  "dependencies": {
+    "rework-visit": "^1.0.0"
+  },
+  "devDependencies": {
+    "rework": "^0.20.2"
+  }
+}
