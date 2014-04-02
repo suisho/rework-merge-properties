@@ -1,13 +1,13 @@
 {
-  "name": "rework-property-override",
+  "name": "rework-compute-style",
   "version": "0.0.0",
-  "description": "reworkcss plugin for override ( other word recast or sanitize ) delcarations property",
+  "description": "reworkcss plugin for override ( other word recast or sanitize ) rules",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "keywords": [
-    "reworkcss",
+    "rework",
     "overwrite",
     "property",
     "declarations",
