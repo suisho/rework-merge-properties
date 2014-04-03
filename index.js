@@ -1,21 +1,25 @@
 var walk = require("rework-walk")
 var defaults = require("defaults")
 var uniq = require("uniq")
+
 // put regexp local value for performance.
 var importantRegexp = new RegExp()
-var without = require("lodash.without")
 importantRegexp.compile(/.*\!important.*/)
 
 // delect ordinaly utility
 // first in last out and remove if duplicate
-var orderPush = function(order, prop){
-  order = without(order, prop)
-  order.push(prop)
-  return order
+var orderPush = function(arr, prop){
+  var idx = arr.indexOf(prop)
+  if(idx > -1){
+    arr.splice(idx, 1)
+  }
+  arr.push(prop)
+  return arr
 }
 
+
 module.exports.property = function(style){
-  
+
   // compute declarations
   walk(style, function(rules, node){
     rules.declarations = computeDeclaration(rules.declarations)
